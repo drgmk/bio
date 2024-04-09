@@ -104,7 +104,7 @@ def plot(file, fig, max=255):
         axs[0].set(xticks=[], yticks=[])
         axs[1].set(yticks=[])
 
-    fig.suptitle(f)
+    fig.suptitle(f"{f}/{im.info['name']}")
     fig.subplots_adjust(top=0.92, bottom=0.05)
     # fig.tight_layout()
     plt.pause(1)   # runs the GUI long enough to make and show the figure
@@ -121,8 +121,6 @@ if __name__ == '__main__':
     last_mtime = 0
     while True:
 
-        time.sleep(10)
-
         fs = np.array(glob.glob(f'{sys.argv[1]}/*lif'))
 
         mtimes = np.array([])
@@ -138,3 +136,5 @@ if __name__ == '__main__':
             plot(fs[-1], fig)
 
         last_mtime = mtimes[-1]
+
+        time.sleep(10)
